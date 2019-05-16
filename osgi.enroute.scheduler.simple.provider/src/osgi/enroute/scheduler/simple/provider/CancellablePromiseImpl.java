@@ -3,6 +3,7 @@ package osgi.enroute.scheduler.simple.provider;
 import java.io.Closeable;
 import java.lang.reflect.InvocationTargetException;
 
+import org.osgi.util.function.Consumer;
 import org.osgi.util.function.Function;
 import org.osgi.util.function.Predicate;
 import org.osgi.util.promise.Failure;
@@ -75,5 +76,30 @@ abstract class CancellablePromiseImpl<T> implements CancellablePromise<T>, Close
 
 	public void close() {
 		cancel();
+	}
+
+	@Override
+	public Promise<T> onSuccess(Consumer<? super T> success) {
+		return this.promise.onSuccess(success);
+	}
+
+	@Override
+	public Promise<T> onFailure(Consumer<? super Throwable> failure) {
+		return this.promise.onFailure(failure);
+	}
+
+	@Override
+	public Promise<T> thenAccept(Consumer<? super T> consumer) {
+		return this.promise.thenAccept(consumer);
+	}
+
+	@Override
+	public Promise<T> timeout(long milliseconds) {
+		return this.promise.timeout(milliseconds);
+	}
+
+	@Override
+	public Promise<T> delay(long milliseconds) {
+		return this.promise.delay(milliseconds);
 	}
 }

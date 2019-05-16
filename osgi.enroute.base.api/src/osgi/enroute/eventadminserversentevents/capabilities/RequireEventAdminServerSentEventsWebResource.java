@@ -3,17 +3,18 @@ package osgi.enroute.eventadminserversentevents.capabilities;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import aQute.bnd.annotation.headers.RequireCapability;
+import org.osgi.annotation.bundle.Requirement;
+
 import osgi.enroute.namespace.WebResourceNamespace;
 
 /**
  * A Web Resource that provides Easse javascript files.
  */
-@RequireCapability(ns = WebResourceNamespace.NS, filter = "(&(" + WebResourceNamespace.NS
+@Requirement(namespace = WebResourceNamespace.NS, filter = "(&(" + WebResourceNamespace.NS
  + "="
 		+ EventAdminServerSentEventsConstants.EVENT_ADMIN_SERVER_SENT_EVENTS_WEB_RESOURCE_PATH
- + ")${frange;"
-		+ EventAdminServerSentEventsConstants.EVENT_ADMIN_SERVER_SENT_EVENTS_WEB_RESOURCE_VERSION + "})")
+		+ ")(version>=" + EventAdminServerSentEventsConstants.EVENT_ADMIN_SERVER_SENT_EVENTS_WEB_RESOURCE_VERSION
+		+ "))")
 @Retention(RetentionPolicy.CLASS)
 public @interface RequireEventAdminServerSentEventsWebResource {
 

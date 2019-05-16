@@ -12,6 +12,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
+import org.osgi.annotation.bundle.Capability;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
@@ -29,7 +30,6 @@ import org.osgi.service.metatype.annotations.Designate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import aQute.bnd.annotation.headers.ProvideCapability;
 import aQute.lib.converter.Converter;
 import aQute.lib.strings.Strings;
 import aQute.libg.glob.Glob;
@@ -44,7 +44,7 @@ import osgi.enroute.logger.simple.provider.LoggerDispatcher.Eval;
  * service.
  */
 // @formatter:off
-@ProvideCapability(ns=ImplementationNamespace.IMPLEMENTATION_NAMESPACE, name=LoggerConstants.LOGGER_SPECIFICATION_NAME, version=LoggerConstants.LOGGER_SPECIFICATION_VERSION)
+@Capability(namespace=ImplementationNamespace.IMPLEMENTATION_NAMESPACE, name=LoggerConstants.LOGGER_SPECIFICATION_NAME, version=LoggerConstants.LOGGER_SPECIFICATION_VERSION)
 @Designate(ocd=Configuration.class)
 @Component(
 		immediate = true,

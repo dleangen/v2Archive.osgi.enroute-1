@@ -3,14 +3,15 @@ package osgi.enroute.webcomponentsjs.webresource.capabilities;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import aQute.bnd.annotation.headers.RequireCapability;
+import org.osgi.annotation.bundle.Requirement;
+
 import osgi.enroute.namespace.WebResourceNamespace;
 
 /**
  * A sample web resource requirement 
  */
 
-@RequireCapability(ns = WebResourceNamespace.NS, filter = "(&(" + WebResourceNamespace.NS + "="
+@Requirement(namespace = WebResourceNamespace.NS, filter = "(&(" + WebResourceNamespace.NS + "="
 		+ WebcomponentsJSConstants.WEBCOMPONENTSJSPATH + ")${frange;" + WebcomponentsJSConstants.WEBCOMPONENTSJSVERSION
 		+ "})")
 @Retention(RetentionPolicy.CLASS)

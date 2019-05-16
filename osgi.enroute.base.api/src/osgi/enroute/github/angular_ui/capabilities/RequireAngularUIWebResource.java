@@ -3,13 +3,14 @@ package osgi.enroute.github.angular_ui.capabilities;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import aQute.bnd.annotation.headers.RequireCapability;
+import org.osgi.annotation.bundle.Requirement;
+
 import osgi.enroute.namespace.WebResourceNamespace;
 
 /**
  * A Web Resource that provides Angular-UI JS javascript files.
  */
-@RequireCapability(ns = WebResourceNamespace.NS, filter = "(&(" + WebResourceNamespace.NS
+@Requirement(namespace = WebResourceNamespace.NS, filter = "(&(" + WebResourceNamespace.NS
  + "="
 		+ AngularUIConstants.ANGULAR_UI_WEBRESOURCE_NAME + ")${frange;"+AngularUIConstants.ANGULAR_UI_WEBRESOURCE_VERSION+"})")
 @Retention(RetentionPolicy.CLASS)

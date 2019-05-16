@@ -19,11 +19,11 @@ import java.util.Map.Entry;
 import java.util.WeakHashMap;
 import java.util.regex.Pattern;
 
+import org.osgi.annotation.bundle.Capability;
 import org.osgi.dto.DTO;
 import org.osgi.namespace.implementation.ImplementationNamespace;
 import org.osgi.service.component.annotations.Component;
 
-import aQute.bnd.annotation.headers.ProvideCapability;
 import aQute.lib.json.Decoder;
 import aQute.lib.json.Encoder;
 import aQute.lib.json.JSONCodec;
@@ -35,7 +35,7 @@ import osgi.enroute.dto.api.TypeReference;
 /**
  * This class provides utility functions for DTOs
  */
-@ProvideCapability(ns=ImplementationNamespace.IMPLEMENTATION_NAMESPACE, name=DTOsConstants.DTOS_SPECIFICATION_NAME, version=DTOsConstants.DTOS_SPECIFICATION_VERSION)
+@Capability(namespace=ImplementationNamespace.IMPLEMENTATION_NAMESPACE, name=DTOsConstants.DTOS_SPECIFICATION_NAME, version=DTOsConstants.DTOS_SPECIFICATION_VERSION)
 @Component
 public class DTOsProvider implements DTOs {
 	private final static Field[]					EMPTY_FIELDS	= new Field[0];

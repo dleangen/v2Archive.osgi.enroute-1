@@ -3,16 +3,17 @@ package osgi.enroute.bostock.d3.webresource.capabilities;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import aQute.bnd.annotation.headers.RequireCapability;
+import org.osgi.annotation.bundle.Requirement;
+
 import osgi.enroute.namespace.WebResourceNamespace;
 
 /**
  * A sample web resource requirement 
  */
 
-@RequireCapability(ns = WebResourceNamespace.NS, filter = "(&(" + WebResourceNamespace.NS + "="
-		+ D3Constants.D3PATH + ")${frange;" + D3Constants.D3VERSION
-		+ "})")
+@Requirement(namespace = WebResourceNamespace.NS, filter = "(&(" + WebResourceNamespace.NS + "="
+		+ D3Constants.D3PATH + ")(version>=" + D3Constants.D3VERSION
+		+ "))")
 @Retention(RetentionPolicy.CLASS)
 public @interface RequireD3Webresource {
 

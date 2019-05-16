@@ -3,9 +3,9 @@ package osgi.enroute.webserver.capabilities;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+import org.osgi.annotation.bundle.Requirement;
 import org.osgi.namespace.extender.ExtenderNamespace;
 
-import aQute.bnd.annotation.headers.RequireCapability;
 import osgi.enroute.namespace.WebResourceNamespace;
 
 /**
@@ -24,7 +24,7 @@ import osgi.enroute.namespace.WebResourceNamespace;
  * Web extenders must also provide support for common web standards like ranges,
  * zipping, caching, etc.
  */
-@RequireCapability(ns = ExtenderNamespace.EXTENDER_NAMESPACE, filter = "(&(" + ExtenderNamespace.EXTENDER_NAMESPACE
-		+ "=osgi.enroute.webserver)${frange;" + WebServerConstants.WEB_SERVER_EXTENDER_VERSION + "})")
+@Requirement(namespace = ExtenderNamespace.EXTENDER_NAMESPACE, filter = "(&(" + ExtenderNamespace.EXTENDER_NAMESPACE
+		+ "=osgi.enroute.webserver)(version>=" + WebServerConstants.WEB_SERVER_EXTENDER_VERSION + "))")
 @Retention(RetentionPolicy.CLASS)
 public @interface RequireWebServerExtender {}

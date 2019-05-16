@@ -86,7 +86,7 @@ package osgi.enroute.namespace;
  * like:
  * 
  * <pre>
- * &#64;RequireCapability(ns = WebResourceNamespace.NS, filter = "(&(osgi.enroute.webresource=/google/angular)${frange;1.4.4})")
+ * &#64;RequireCapability(namespace = WebResourceNamespace.NS, filter = "(&(osgi.enroute.webresource=/google/angular)${frange;1.4.4})")
  * &#64;Retention(RetentionPolicy.CLASS)
  * public @interface RequireAngularWebResource {
  * 	String[]resource() default {

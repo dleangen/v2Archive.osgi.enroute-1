@@ -3,7 +3,8 @@ package osgi.enroute.jsonrpc.api;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import aQute.bnd.annotation.headers.RequireCapability;
+import org.osgi.annotation.bundle.Requirement;
+
 import osgi.enroute.namespace.WebResourceNamespace;
 
 /**
@@ -51,7 +52,7 @@ import osgi.enroute.namespace.WebResourceNamespace;
 })();
  * </pre>
  */
-@RequireCapability(ns = WebResourceNamespace.NS, filter = "(&(" + WebResourceNamespace.NS + "="
+@Requirement(namespace = WebResourceNamespace.NS, filter = "(&(" + WebResourceNamespace.NS + "="
 		+ JsonrpcConstants.JSONRPC_WEB_RESOURCE_PATH + ")${frange;" + JsonrpcConstants.JSONRPC_WEB_RESOURCE_VERSION
 		+ "})")
 @Retention(RetentionPolicy.CLASS)

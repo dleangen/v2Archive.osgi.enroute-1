@@ -13,6 +13,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import org.osgi.annotation.bundle.Capability;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
 import org.osgi.framework.ServiceReference;
@@ -30,7 +31,6 @@ import org.osgi.service.event.Event;
 import org.osgi.service.event.EventAdmin;
 import org.osgi.util.tracker.ServiceTracker;
 
-import aQute.bnd.annotation.headers.ProvideCapability;
 import aQute.lib.collections.MultiMap;
 import osgi.enroute.dto.api.DTOs;
 import osgi.enroute.iot.admin.api.CircuitAdmin;
@@ -47,7 +47,7 @@ import osgi.enroute.scheduler.api.Scheduler;
  * Implementation of {@link CircuitAdmin}
  */
 
-@ProvideCapability(ns = ImplementationNamespace.IMPLEMENTATION_NAMESPACE, name = IotAdminConstants.IOT_ADMIN_SPECIFICATION_NAME, version = IotAdminConstants.IOT_ADMIN_SPECIFICATION_VERSION)
+@Capability(namespace = ImplementationNamespace.IMPLEMENTATION_NAMESPACE, name = IotAdminConstants.IOT_ADMIN_SPECIFICATION_NAME, version = IotAdminConstants.IOT_ADMIN_SPECIFICATION_VERSION)
 @Component(immediate = true, name = "osgi.enroute.iot.circuit")
 public class CircuitAdminImpl implements CircuitAdmin, CircuitBoard {
 	private static final String			WIREFACTORYPID	= "osgi.enroute.iot.circuit.wires";

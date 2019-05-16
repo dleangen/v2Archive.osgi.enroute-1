@@ -6,6 +6,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import javax.servlet.Servlet;
 
+import org.osgi.annotation.bundle.Capability;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
 import org.osgi.framework.ServiceReference;
@@ -21,7 +22,6 @@ import org.osgi.util.tracker.ServiceTracker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import aQute.bnd.annotation.headers.ProvideCapability;
 import osgi.enroute.dto.api.DTOs;
 import osgi.enroute.http.capabilities.RequireHttpImplementation;
 import osgi.enroute.rest.api.REST;
@@ -39,7 +39,7 @@ import osgi.enroute.rest.api.RestConstants;
  */
 @Designate(ocd=Config.class)
 @RequireHttpImplementation
-@ProvideCapability(ns = ImplementationNamespace.IMPLEMENTATION_NAMESPACE, name = RestConstants.REST_SPECIFICATION_NAME, version = RestConstants.REST_SPECIFICATION_VERSION)
+@Capability(namespace = ImplementationNamespace.IMPLEMENTATION_NAMESPACE, name = RestConstants.REST_SPECIFICATION_NAME, version = RestConstants.REST_SPECIFICATION_VERSION)
 @Component(name = "osgi.enroute.rest.simple", immediate = true)
 public class RestControllerService {
 	Logger log = LoggerFactory.getLogger(RestControllerService.class);

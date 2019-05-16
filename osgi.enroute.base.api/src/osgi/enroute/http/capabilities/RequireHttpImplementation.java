@@ -3,9 +3,8 @@ package osgi.enroute.http.capabilities;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+import org.osgi.annotation.bundle.Requirement;
 import org.osgi.namespace.implementation.ImplementationNamespace;
-
-import aQute.bnd.annotation.headers.RequireCapability;
 
 /**
  * This an extender that reads {@link #configuration_loc()} file. These files
@@ -28,10 +27,9 @@ import aQute.bnd.annotation.headers.RequireCapability;
  * factory instance already exists with that name then the data is updated,
  * otherwise a new record is created.
  */
-@RequireCapability(ns = ImplementationNamespace.IMPLEMENTATION_NAMESPACE, filter = "(&("
+@Requirement(namespace = ImplementationNamespace.IMPLEMENTATION_NAMESPACE, filter = "(&("
 		+ ImplementationNamespace.IMPLEMENTATION_NAMESPACE
-		+ "=" + HttpConstants.HTTP_SPECIFICATION_NAME + ")${frange;${version;==;"
-		+ HttpConstants.HTTP_SPECIFICATION_VERSION + "}})")
+		+ "=" + HttpConstants.HTTP_SPECIFICATION_NAME + "))")
 @Retention(RetentionPolicy.CLASS)
 public @interface RequireHttpImplementation {
 	/**

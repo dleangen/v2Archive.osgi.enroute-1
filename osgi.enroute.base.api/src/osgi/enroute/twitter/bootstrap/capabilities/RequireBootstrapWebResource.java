@@ -3,14 +3,16 @@ package osgi.enroute.twitter.bootstrap.capabilities;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import aQute.bnd.annotation.headers.RequireCapability;
+import org.osgi.annotation.bundle.Requirement;
+
 import osgi.enroute.namespace.WebResourceNamespace;
 
 /**
  * A Web Resource that provides Twitter's Bootstrap files.
  */
-@RequireCapability(ns = WebResourceNamespace.NS, filter = "(&(" + WebResourceNamespace.NS
-		+ "="+BootstrapConstants.BOOTSTRAP_WEB_RESOURCE_NAME+")${frange;"+BootstrapConstants.BOOTSTRAP_WEB_RESOURCE_VERSION+"})")
+@Requirement(namespace = WebResourceNamespace.NS, filter = "(&(" + WebResourceNamespace.NS
+		+ "=" + BootstrapConstants.BOOTSTRAP_WEB_RESOURCE_NAME + ")(version>="
+		+ BootstrapConstants.BOOTSTRAP_WEB_RESOURCE_VERSION + "))")
 @Retention(RetentionPolicy.CLASS)
 public @interface RequireBootstrapWebResource {
 

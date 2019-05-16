@@ -3,9 +3,8 @@ package osgi.enroute.configurer.api;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+import org.osgi.annotation.bundle.Requirement;
 import org.osgi.namespace.extender.ExtenderNamespace;
-
-import aQute.bnd.annotation.headers.RequireCapability;
 
 /**
  * This an extender that reads {@link #configuration_loc()} file. These files
@@ -28,9 +27,8 @@ import aQute.bnd.annotation.headers.RequireCapability;
  * factory instance already exists with that name then the data is updated,
  * otherwise a new record is created.
  */
-@RequireCapability(ns = ExtenderNamespace.EXTENDER_NAMESPACE, filter = "(&(" + ExtenderNamespace.EXTENDER_NAMESPACE
-		+ "=" + ConfigurerConstants.CONFIGURER_EXTENDER_NAME + ")${frange;"
-		+ ConfigurerConstants.CONFIGURER_EXTENDER_VERSION + "})")
+@Requirement(namespace = ExtenderNamespace.EXTENDER_NAMESPACE, filter = "(&(osgi.extender=osgi.enroute.configurer)(version>="
+		+ ConfigurerConstants.CONFIGURER_EXTENDER_VERSION + "))")
 @Retention(RetentionPolicy.CLASS)
 public @interface RequireConfigurerExtender {
 	/**

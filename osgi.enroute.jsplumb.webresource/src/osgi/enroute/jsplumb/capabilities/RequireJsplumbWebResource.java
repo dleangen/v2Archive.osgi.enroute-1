@@ -3,13 +3,14 @@ package osgi.enroute.jsplumb.capabilities;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import aQute.bnd.annotation.headers.RequireCapability;
+import org.osgi.annotation.bundle.Requirement;
+
 import osgi.enroute.namespace.WebResourceNamespace;
 
 /**
  * A Web Resource that provides Jsonrpc javascript files.
  */
-@RequireCapability(ns = WebResourceNamespace.NS, filter = "(&(" + WebResourceNamespace.NS
+@Requirement(namespace = WebResourceNamespace.NS, filter = "(&(" + WebResourceNamespace.NS
 		+ "="+JsplumbConstants.JSPLUMB_WEB_RESOURCE_NAME+")${frange;"+JsplumbConstants.JSPLUMB_WEB_RESOURCE_VERSION+"})")
 @Retention(RetentionPolicy.CLASS)
 public @interface RequireJsplumbWebResource {

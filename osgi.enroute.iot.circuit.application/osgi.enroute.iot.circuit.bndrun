@@ -48,3 +48,5 @@ JPM-Command					circuit
 	osgi.enroute.twitter.bootstrap.webresource;version=snapshot,\
 	osgi.enroute.web.simple.provider;version=snapshot,\
 	osgi.promise;version='[6.0.0,6.0.1)'
+-runfw: org.apache.felix.framework;version='[6.0.2,6.0.2]'
+-runee: JavaSE-1.8

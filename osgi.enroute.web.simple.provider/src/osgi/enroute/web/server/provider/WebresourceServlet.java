@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.osgi.annotation.bundle.Capability;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
@@ -39,7 +40,6 @@ import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.http.whiteboard.HttpWhiteboardConstants;
 import org.osgi.service.log.LogService;
 
-import aQute.bnd.annotation.headers.ProvideCapability;
 import aQute.bnd.osgi.Verifier;
 import aQute.lib.converter.Converter;
 import aQute.lib.converter.TypeReference;
@@ -72,14 +72,14 @@ import osgi.enroute.webserver.capabilities.WebServerConstants;
  * 
  * <pre>
  * 
- * &#064;RequireCapability(ns = &quot;osgi.enroute.webresource&quot;, filter = &quot;(osgi.enroute.webresource=/google/angular)&quot;)
+ * &#064;RequireCapability(namespace = &quot;osgi.enroute.webresource&quot;, filter = &quot;(osgi.enroute.webresource=/google/angular)&quot;)
  * public @interface AngularWebResource {
  * 	String[] resource();
  * 
  * 	int priority() default 1000;
  * }
  * 
- * &#064;RequireCapability(ns = &quot;osgi.enroute.webresource&quot;, filter = &quot;(osgi.enroute.webresource=/twitter/bootstrap)&quot;)
+ * &#064;RequireCapability(namespace = &quot;osgi.enroute.webresource&quot;, filter = &quot;(osgi.enroute.webresource=/twitter/bootstrap)&quot;)
  * public @interface BootstrapWebResource {
  * 	String[] resource() default {
  * 			&quot;bootstrap.css&quot;
@@ -121,7 +121,7 @@ import osgi.enroute.webserver.capabilities.WebServerConstants;
  * 'https://github.com/osgi/design/blob/master/rfps/rfp-0171-Web-Resources.pdf?raw=true'
  * > RFP 171 Web Resources (PDF)</a>
  */
-@ProvideCapability(ns = ExtenderNamespace.EXTENDER_NAMESPACE, name = WebServerConstants.WEB_SERVER_EXTENDER_NAME, version = WebServerConstants.WEB_SERVER_EXTENDER_VERSION)
+@Capability(namespace = ExtenderNamespace.EXTENDER_NAMESPACE, name = WebServerConstants.WEB_SERVER_EXTENDER_NAME, version = WebServerConstants.WEB_SERVER_EXTENDER_VERSION)
 @RequireHttpImplementation
 @Component(property = {
 		HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_PATTERN + "=/" + WebresourceServlet.OSGI_ENROUTE_WEBRESOURCE
@@ -304,7 +304,7 @@ public class WebresourceServlet extends HttpServlet {
 				// so we use the converter
 				//
 
-				int priority = (Integer) Converter.cnv(Integer.class, attrs.get("priority"));
+				int priority = Converter.cnv(Integer.class, attrs.get("priority"));
 				List<String> resources = Converter.cnv(listOfStrings, attrs.get("resource"));
 				if (resources != null) {
 

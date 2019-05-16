@@ -3,7 +3,6 @@ package osgi.enroute.base.authenticator.test;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 
-import aQute.bnd.annotation.component.Reference;
 import aQute.bnd.testing.DSTestWiring;
 import junit.framework.TestCase;
 import osgi.enroute.authentication.api.Authenticator;

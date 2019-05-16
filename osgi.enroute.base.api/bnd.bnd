@@ -12,26 +12,11 @@ Bundle-Description: enRoute is an OSGi project that creates a runtime \
 Bundle-Icon: 				enroute.png
 
 
-#
-# slf4j drags in implementation details that do not belong to the
-# public API of enRoute base. So we need to remove them.
-#
-Import-Package: \
-	!javax.servlet.annotation, \
+# We export all the base packages
+Export-Package: \
+    !osgi.enroute.base.provided, \
 	*
 
-#
-# We export all the base packages
-#
-Export-Package: \
-	${base.packages}
-
-
-x=, \
-	javax.servlet;version=3.1, \
-	javax.servlet.http;version=3.1, \
-  	javax.servlet.annotation;version=3.1, \
-  	javax.servlet.descriptor;version=3.1
 
 Provide-Capability: \
 	osgi.contract; \
@@ -40,34 +25,51 @@ Provide-Capability: \
 		uses:="javax.servlet,javax.servlet.http,javax.servlet.descriptor,javax.servlet.annotation"
 
 
-
-#
-# This package provides the osgi.enroute.authentication.capabilities that should be
-# present in the runtime through an implementation but makes
-# this bundle also unresolveable so that it cannot be picked
-# by the resolver.
-#
-# We also add org.slf4j's default implementation so we use logging
-# in JUnit tests.
-#
-
-Private-Package: \
-	osgi.enroute.base.provided
-
 -conditionalpackage:	org.slf4j.*
 
 -fixupmessages.baseapi      Split package, multiple jars provide the same package:org/osgi/service/*
 
 -workingset base
+
 -buildpath: \
-	osgi.annotation;version=@6.0.1,\
-	osgi.core;version=@6.0.0,\
-	osgi.cmpn;version=@6.0.0,\
-	slf4j.api;version=@1.7.0,\
-	biz.aQute.bndlib;version=@3.0.0,\
-	org.apache.felix.http.servlet-api,\
-	slf4j.simple;version=@1.7,\
-	biz.aQute.junit
+    osgi.annotation, \
+    org.osgi.dto, \
+    org.osgi.framework, \
+    org.osgi.resource, \
+    org.osgi.service.condpermadmin, \
+    org.osgi.service.packageadmin, \
+    org.osgi.service.resolver, \
+    org.osgi.service.url, \
+    org.osgi.util.tracker    , \
+    org.osgi.namespace.contract, \
+    org.osgi.namespace.extender, \
+    org.osgi.namespace.implementation, \
+    org.osgi.namespace.service, \
+    org.osgi.namespace.unresolvable, \
+    org.osgi.service.async, \
+    org.osgi.service.cm, \
+    org.osgi.service.component, \
+    org.osgi.service.component.annotations, \
+    org.osgi.service.configurator, \
+    org.osgi.service.coordinator, \
+    org.osgi.service.event, \
+    org.osgi.service.http, \
+    org.osgi.service.http.whiteboard, \
+    org.osgi.service.jdbc, \
+    org.osgi.service.log, \
+    org.osgi.service.metatype, \
+    org.osgi.service.metatype.annotations, \
+    org.osgi.service.remoteserviceadmin, \
+    org.osgi.service.repository, \
+    org.osgi.service.rest, \
+    org.osgi.service.serviceloader, \
+    org.osgi.service.useradmin, \
+    org.osgi.util.converter, \
+    org.osgi.util.function, \
+    org.osgi.util.promise, \
+    org.osgi.util.pushstream, \
+    org.apache.felix.http.servlet-api, \
+    slf4j.api
 
 -includeresource: {${build}/legal}, icon/${Bundle-Icon}
 

@@ -1,4 +1,6 @@
-package osgi.enroute.rest.simple.test;
+package osgi.enroute.rest.simple.provider;
+
+import static org.junit.Assert.assertEquals;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -6,16 +8,17 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Hashtable;
 
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
-import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceRegistration;
 
-import aQute.bnd.annotation.component.Reference;
-import aQute.bnd.testing.DSTestWiring;
+import aQute.launchpad.Launchpad;
+import aQute.launchpad.LaunchpadBuilder;
+import aQute.launchpad.Service;
 import aQute.lib.io.IO;
-import junit.framework.TestCase;
-import osgi.enroute.configurer.api.ConfigurationDone;
 import osgi.enroute.configurer.api.RequireConfigurerExtender;
 import osgi.enroute.rest.api.REST;
 import osgi.enroute.rest.api.RESTRequest;
@@ -23,21 +26,23 @@ import osgi.enroute.rest.api.RequireRestImplementation;
 
 @RequireConfigurerExtender
 @RequireRestImplementation
-public class RestNamespaceTest extends TestCase {
+public class RestNamespaceTest {
 
-	BundleContext	context	= FrameworkUtil.getBundle(RestNamespaceTest.class).getBundleContext();
-	DSTestWiring	ds		= new DSTestWiring();
+	final static LaunchpadBuilder		builder = new LaunchpadBuilder().bndrun("bnd.bnd").debug();
 
+	@Service
+	BundleContext context;
 	
+	Launchpad lp;
+
+	@Before
 	public void setUp() throws Exception {
-		ds.setContext(context);
-		ds.add(this);
-		ds.wire();
+		lp = builder.create().inject(this);
 	}
 
-	@Override
-	protected void tearDown() throws Exception {
-		super.tearDown();
+	@After
+	public void tearDown() throws Exception {
+		lp.close();
 	}
 
 	
@@ -67,7 +72,7 @@ public class RestNamespaceTest extends TestCase {
     }
     
     
-    
+    @Test
 	public void testDifferentServletsDifferentNamespaces() throws Exception {
         ServiceRegistration<REST> deflt = regRest(new RestExample(), 0);
         ServiceRegistration<REST> a = regRest(new RestExampleA(), 0, "/A/*");
@@ -171,9 +176,4 @@ public class RestNamespaceTest extends TestCase {
                        dict
                        );
    }
-
-    @Reference
-	void setConfigurationDone( ConfigurationDone d) {
-		System.out.println("Configuration Done");
-	}
 }

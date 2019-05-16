@@ -17,6 +17,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.osgi.annotation.bundle.Capability;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleEvent;
@@ -34,7 +35,6 @@ import org.osgi.service.coordinator.Coordinator;
 import org.osgi.service.log.LogService;
 import org.osgi.util.tracker.BundleTracker;
 
-import aQute.bnd.annotation.headers.ProvideCapability;
 import aQute.lib.collections.ExtList;
 import aQute.lib.converter.Converter;
 import aQute.lib.converter.TypeReference;
@@ -67,7 +67,7 @@ import osgi.enroute.configurer.api.ConfigurerConstants;
  * The configurer reads
  */
 
-@ProvideCapability(ns = ExtenderNamespace.EXTENDER_NAMESPACE, name = ConfigurerConstants.CONFIGURER_EXTENDER_NAME, version = ConfigurerConstants.CONFIGURER_EXTENDER_VERSION)
+@Capability(namespace = ExtenderNamespace.EXTENDER_NAMESPACE, name = ConfigurerConstants.CONFIGURER_EXTENDER_NAME, version = ConfigurerConstants.CONFIGURER_EXTENDER_VERSION)
 @Component(service = {
 		ConfigurationDone.class, Object.class
 }, immediate = true)
