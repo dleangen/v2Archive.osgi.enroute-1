@@ -61,13 +61,11 @@ import org.osgi.util.tracker.ServiceTracker;
 import aQute.lib.collections.MultiMap;
 import aQute.lib.io.IO;
 import aQute.lib.json.JSONCodec;
-import osgi.enroute.bostock.d3.webresource.capabilities.RequireD3Webresource;
 import osgi.enroute.webconsole.xray.provider.Data.BundleDef;
 import osgi.enroute.webconsole.xray.provider.Data.BundleDef.STATE;
 import osgi.enroute.webconsole.xray.provider.Data.ComponentDef;
 import osgi.enroute.webconsole.xray.provider.Data.Result;
 import osgi.enroute.webconsole.xray.provider.Data.ServiceDef;
-import osgi.enroute.webserver.capabilities.RequireWebServerExtender;
 
 /**
  * This is a servlet that provides the status of the OSGi framework in a JSON
@@ -77,8 +75,6 @@ import osgi.enroute.webserver.capabilities.RequireWebServerExtender;
  * might kill this.
  */
 
-@RequireWebServerExtender
-@RequireD3Webresource(resource = "d3.min.js")
 public final class XRayWebPlugin extends AbstractWebConsolePlugin implements BundleActivator {
 	private static final long					serialVersionUID		= 1L;
 	private static String						PLUGIN_NAME				= "xray";
@@ -266,6 +262,7 @@ public final class XRayWebPlugin extends AbstractWebConsolePlugin implements Bun
 	/**
 	 * Create the state file.
 	 */
+	@SuppressWarnings("deprecation")
 	private void getState(HttpServletRequest rq, HttpServletResponse rsp) {
 		try {
 			String c = rq.getParameter("cmd");
@@ -662,8 +659,8 @@ public final class XRayWebPlugin extends AbstractWebConsolePlugin implements Bun
 	/**
 	 * Use the LogReaderService to find out about log messages
 	 */
+	@SuppressWarnings("deprecation")
 	private void doLog(Bundle bundle, BundleDef bd) {
-		@SuppressWarnings("unchecked")
 		Enumeration<LogEntry> e = logReader.getLog();
 		StringBuilder sb = new StringBuilder();
 		try (Formatter f = new Formatter(sb)) {
@@ -750,7 +747,11 @@ public final class XRayWebPlugin extends AbstractWebConsolePlugin implements Bun
 		} else {
 			listeners = new ArrayList<Bundle>(namedContexts.size());
 			for (BundleContext namedContext : namedContexts) {
-				listeners.add(namedContext.getBundle());
+				try {
+					listeners.add(namedContext.getBundle());
+				} catch (Exception e) {
+					// ignore
+				}
 			}
 		}
 

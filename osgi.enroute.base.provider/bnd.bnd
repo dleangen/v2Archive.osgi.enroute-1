@@ -20,5 +20,4 @@ Provide-Capability: osgi.service;\
 -buildpath:  \
 	osgi.enroute.base.api;version=${base.version}
 
--includeresource: {readme.md}
 -workingset base,provider

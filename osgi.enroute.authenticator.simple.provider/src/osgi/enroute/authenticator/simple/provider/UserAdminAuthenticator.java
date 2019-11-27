@@ -20,6 +20,7 @@ import org.osgi.service.useradmin.Role;
 import org.osgi.service.useradmin.User;
 import org.osgi.service.useradmin.UserAdmin;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import aQute.lib.base64.Base64;
 import aQute.lib.hex.Hex;
@@ -36,8 +37,10 @@ import osgi.enroute.debug.api.Debug;
 public class UserAdminAuthenticator implements Authenticator {
 	private static final Pattern	AUTHORIZATION_P	= Pattern.compile("Basic\\s+(?<base64>[A-Za-z0-9+/]{3,}={0,2})");
 	private static final Pattern	IDPW_P			= Pattern.compile("(?<id>[^:]+):(?<pw>.*)");
+	
+	@Reference
 	private UserAdmin				userAdmin;
-	private Logger					log;
+	private Logger					log = LoggerFactory.getLogger(UserAdminAuthenticator.class);
 
 	private byte[]					salt;
 	private Algorithm				algorithm;
@@ -230,16 +233,6 @@ public class UserAdminAuthenticator implements Authenticator {
 		User user = (User) role;
 
 		user.getCredentials().put(algorithm.toString(), hash(pw));
-	}
-
-	@Reference
-	void setUA(UserAdmin userAdmin) {
-		this.userAdmin = userAdmin;
-	}
-
-	@Reference
-	void setLog(Logger logger) {
-		this.log = logger;
 	}
 
 }

@@ -1,6 +1,7 @@
 # OSGi enRoute API + Bundles
 
 -remoteworkspace        true
+
 copyright.year = ${tstamp;yyyy}
 copyright = Copyright (c) OSGi Alliance (2014, ${copyright.year}). All Rights Reserved.
 
@@ -41,35 +42,23 @@ pwd = ${env;REPOSITORY_PASSWORD;}
 usr = ${env;REPOSITORY_USERNAME;}
 -connection-settings: ${if;${pwd};server;-dummy};id=https://oss.sonatype.org;username=${usr};password=${pwd}, -bnd
 
--releaserepo: OSGiNexus
+-releaserepo: Release
 -baselinerepo: Distro
 
+-runfw: org.apache.felix.framework
+-runee: JavaSE-1.8
+
 
 #
-# Uncomment to always install the artifact
-#
--plugin.5.local: \
-    aQute.bnd.repository.maven.provider.MavenBndRepository;\
-        name='Local';\
-        noupdateOnRelease=true
-
--buildrepo: Local
-
 # Configure Repositories
 
--plugin.10.build: \
+-plugin.osgi.sonatype: \
     aQute.bnd.repository.maven.provider.MavenBndRepository; \
-        releaseUrl=https://repo.maven.apache.org/maven2/; \
-        index=${.}/build.mvn; \
-        readOnly=true; \
-        name="Build"
-
--plugin.20.distro: \
-    aQute.bnd.repository.maven.provider.MavenBndRepository; \
-        releaseUrl=https://repo.maven.apache.org/maven2/; \
-        index=${.}/distro.mvn; \
-        readOnly=true; \
-        name="Distro"
+        snapshotUrl="https://oss.sonatype.org/content/repositories/osgi-snapshots/,https://bndtools.jfrog.io/bndtools/update/"; \
+        releaseUrl= 'https://oss.sonatype.org/service/local/staging/deploy/maven2/,http://repo1.maven.org/maven2/'; \
+        index=${.}/release.mvn; \
+        name="Release";\
+        noupdateOnRelease=false
 
 -augment.async \
     org.osgi.service.async; \

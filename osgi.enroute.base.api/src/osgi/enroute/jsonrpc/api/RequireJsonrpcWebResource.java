@@ -53,8 +53,8 @@ import osgi.enroute.namespace.WebResourceNamespace;
  * </pre>
  */
 @Requirement(namespace = WebResourceNamespace.NS, filter = "(&(" + WebResourceNamespace.NS + "="
-		+ JsonrpcConstants.JSONRPC_WEB_RESOURCE_PATH + ")${frange;" + JsonrpcConstants.JSONRPC_WEB_RESOURCE_VERSION
-		+ "})")
+		+ JsonrpcConstants.JSONRPC_WEB_RESOURCE_PATH + ")(version>=" + JsonrpcConstants.JSONRPC_WEB_RESOURCE_VERSION
+		+ "))")
 @Retention(RetentionPolicy.CLASS)
 public @interface RequireJsonrpcWebResource {
 

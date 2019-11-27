@@ -15,6 +15,7 @@ Embedded-Activator: osgi.enroute.equinox.log.adapter.HideEquinoxLog
 
 -workingset bundles,provider
 -buildpath:  \
+    org.osgi.service.log;version=1.4,\
 	osgi.enroute.base.api;version=1.0
 
 -testpath: \

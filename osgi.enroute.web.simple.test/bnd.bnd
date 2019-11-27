@@ -3,28 +3,22 @@
 #
 
 
-Bundle-Description: Test case for osgi.enroute.web.simple.provider
-EnRoute-Application: org.enroute.web.simple.test
-
-Private-Package:  \
-	osgi.enroute.web.simple.test
-
-Conditional-Package: \
-	aQute.lib*
 
 -workingset bundles,provider
--includeresource: static=static, configuration=configuration
 
--buildpath: \
+-testpath: \
 	osgi.enroute.base.api;version=1.0,\
 	osgi.enroute.web.simple.provider;version=latest,\
 	biz.aQute.bndlib;packages=*, \
 	osgi.enroute.junit.wrapper;version=4.12,\
-	net.sourceforge.htmlunit;version=2.15
+	net.sourceforge.htmlunit:htmlunit, \
+	biz.aQute.launchpad
 
 -runrequires: \
 	osgi.identity;filter:='(osgi.identity=osgi.enroute.web.simple.test)',\
 	osgi.identity;filter:='(osgi.identity=osgi.enroute.webconsole.xray.provider)'
+-runblacklist: \
+    osgi.identity;filter:='(osgi.identity=org.osgi.service.*)'
 
 -runbundles: \
 	biz.aQute.bndlib;version='[3.0.0,3.0.1)',\

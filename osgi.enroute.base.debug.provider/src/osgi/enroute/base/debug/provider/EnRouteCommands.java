@@ -40,6 +40,7 @@ import org.osgi.util.tracker.ServiceTracker;
 
 import osgi.enroute.debug.api.Debug;
 
+@SuppressWarnings("deprecation")
 public class EnRouteCommands implements LogListener, BundleActivator {
 
 	volatile boolean											watchlog	= Boolean.getBoolean("enRoute.watchlog");

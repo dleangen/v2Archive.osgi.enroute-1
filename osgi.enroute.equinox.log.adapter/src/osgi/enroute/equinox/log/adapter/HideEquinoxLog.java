@@ -28,6 +28,7 @@ public class HideEquinoxLog implements BundleActivator, FindHook,
 
 	private ServiceReference<?> equinoxLogReaderRef;
 	private ServiceReference<?> equinoxLogRef;
+	private ServiceReference<?> equinoxAdminLogRef;
 
 	@Override
 	public void start(BundleContext context) throws Exception {
@@ -42,6 +43,7 @@ public class HideEquinoxLog implements BundleActivator, FindHook,
 			equinoxLogReaderRef = context
 					.getServiceReference(LogReaderService.class);
 			equinoxLogRef = context.getServiceReference(LogService.class);
+			equinoxAdminLogRef = context.getServiceReference(LogService.class);
 
 			//
 			// Only have to do this when we actually have a registered log
@@ -132,7 +134,8 @@ public class HideEquinoxLog implements BundleActivator, FindHook,
 	public void event(ServiceEvent event,
 			Map<BundleContext, Collection<ListenerInfo>> listeners) {
 		if (event.getServiceReference() == equinoxLogReaderRef
-				|| event.getServiceReference() == equinoxLogRef)
+				|| event.getServiceReference() == equinoxLogRef
+				|| event.getServiceReference() == equinoxAdminLogRef)
 			listeners.clear();
 	}
 
@@ -141,6 +144,7 @@ public class HideEquinoxLog implements BundleActivator, FindHook,
 			boolean allServices, Collection<ServiceReference<?>> references) {
 		references.remove(equinoxLogReaderRef);
 		references.remove(equinoxLogRef);
+		references.remove(equinoxAdminLogRef);
 	}
 
 }

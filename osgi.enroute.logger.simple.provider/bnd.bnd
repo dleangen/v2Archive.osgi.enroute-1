@@ -7,8 +7,9 @@ Bundle-Description: 				\
 	Provides a simple implementation of the OSGi SLF4J bridge, includes shell command
 Export-Package:  \
 	osgi.enroute.logger.api;provide:=true,\
-	org.slf4j.helpers;version=1.7.0,\
-	org.slf4j;provide:=true;-split-package:=merge-last;version=1.7.0
+    org.slf4j.helpers,\
+    org.slf4j.event,\
+	org.slf4j;provide:=true;-split-package:=merge-last;version=1.7.25
 
 Private-Package: \
 	osgi.enroute.logger.simple.provider,\

@@ -19,6 +19,7 @@ import org.osgi.service.useradmin.Role;
 import org.osgi.service.useradmin.User;
 import org.osgi.service.useradmin.UserAdmin;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import aQute.libg.glob.Glob;
 import osgi.enroute.authorization.api.Authority;
@@ -29,9 +30,7 @@ import osgi.enroute.authorization.api.AuthorizationConstants;
 @Component
 public class AuthorityImpl implements Authority, AuthorityAdmin {
 	private static final Glob[]				EMPTY_GLOBS	= new Glob[0];
-
-	@Reference
-	private Logger							log;
+	private Logger							log = LoggerFactory.getLogger(AuthorityImpl.class);
 	@Reference
 	private UserAdmin						userAdmin;
 

@@ -12,6 +12,7 @@ import osgi.enroute.iot.admin.api.CircuitAdmin;
 import osgi.enroute.iot.admin.dto.ICDTO;
 import osgi.enroute.iot.admin.dto.WireDTO;
 import osgi.enroute.jsonrpc.api.JSONRPC;
+import osgi.enroute.jsonrpc.api.RequireJsonrpcWebResource;
 import osgi.enroute.twitter.bootstrap.capabilities.RequireBootstrapWebResource;
 import osgi.enroute.webserver.capabilities.RequireWebServerExtender;
 
@@ -23,6 +24,7 @@ import osgi.enroute.webserver.capabilities.RequireWebServerExtender;
 @RequireWebServerExtender
 @RequireConfigurerExtender
 @RequireEventAdminServerSentEventsWebResource
+@RequireJsonrpcWebResource
 @Component(name="osgi.enroute.iot.circuit", property = JSONRPC.ENDPOINT + "=osgi.enroute.iot.circuit")
 public class CircuitApplication implements JSONRPC {
 
