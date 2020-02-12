@@ -1,11 +1,3 @@
--plugin.10.build: \
-    aQute.bnd.repository.maven.provider.MavenBndRepository; \
-        snapshotUrl="https://bndtools.jfrog.io/bndtools/update/"; \
-        releaseUrl=https://repo.maven.apache.org/maven2/; \
-        index=${.}/build.mvn; \
-        readOnly=true; \
-        name="Build"
-
 -plugin.20.distro: \
     aQute.bnd.repository.maven.provider.MavenBndRepository; \
         snapshotUrl="https://bndtools.jfrog.io/bndtools/update/"; \
@@ -14,7 +6,7 @@
         readOnly=true; \
         name="Distro"
 
- -runblacklist.enroute: \
+-runblacklist.enroute: \
     osgi.identity;filter:='(osgi.identity=osgi.enroute.base.api)', \
     osgi.identity;filter:='(osgi.identity=osgi.cmpn)', \
     osgi.identity;filter:='(osgi.identity=osgi.core)', \
@@ -22,24 +14,3 @@
     osgi.identity;filter:='(osgi.identity=biz.aQute.launcher)', \
     osgi.identity;filter:='(osgi.identity=biz.aQute.remote.launcher)', \
     osgi.identity;filter:='(osgi.identity=org.osgi.service.*)', \
-
-
-# TODO check if still needed
-
--runproperties.eqnx:                \
-    org.apache.felix.http.jettyEnabled=true, \
-    org.apache.felix.http.whiteboardEnabled=true,\
-    osgi.console=, \
-    osgi.console.enable.builtin=false
-
--runsystemcapabilities.dflt:    ${native_capability}
-
-debug-bundles: \
-    osgi.identity;filter:='(osgi.identity=osgi.enroute.webconsole.xray.provider)',\
-    osgi.implementation;filter:='(osgi.implementation=osgi.metatype)',\
-    osgi.implementation;filter:='(osgi.implementation=osgi.log)',\
-    osgi.implementation;filter:='(osgi.implementation=osgi.event)',\
-    osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.command)',\
-    osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.shell)', \
-    osgi.identity;filter:='(osgi.identity=osgi.enroute.base.debug.provider)'
- 
