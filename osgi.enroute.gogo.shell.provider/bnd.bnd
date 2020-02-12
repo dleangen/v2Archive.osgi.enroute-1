@@ -12,9 +12,9 @@ Bundle-Description: \
 -workingset bundles,provider
 -buildpath: \
 	osgi.enroute.base.api,\
-	jline; version=2.13,\
-	org.apache.felix.gogo.shell; version=0.12; packages=org.apache.felix.gogo.shell,\
-	org.apache.felix.gogo.runtime; version=0.16
+	org.apache.felix.gogo.shell;version=0.12;packages=org.apache.felix.gogo.shell,\
+	org.apache.felix.gogo.runtime;version=0.16,\
+	jline;version=2.14.6
 
 -privatepackage: osgi.enroute.gogo.shell.provider
 
@@ -25,5 +25,5 @@ Bundle-Description: \
 	org.apache.felix.gogo.options
 
 -includeresource: resources, \
-	@jline-2.14.2.jar!/META-INF/native/*
+	@jline-2.14.6.jar!/META-INF/native/*
 
